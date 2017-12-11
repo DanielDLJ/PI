@@ -3,10 +3,10 @@
 %Daniel Leme Junior    RA:725805
 %Igor                  RA:725804
 
-%Observação 
+%ObservaÃ§Ã£o 
 %Esse projeto mostra somente o tempo de roubo e o tempo que ocorre o roubo
 %diferente do que foi apresentado em aula onde somente guardava as
-%movimentação no video.
+%movimentaÃ§Ã£o no video.
 
 clear all
 close all
@@ -15,7 +15,7 @@ clc
 %video base em FULL HD
 %1080 x 1920 = 2.073.600
 
-
+fps_video_base = 30;
 taxa = 30; %taxa de pulo entre frames
 level = 0.5;%taxa de binarizacao
 
@@ -67,7 +67,7 @@ for i=n:-2:1
         end
     end
     if(soma >= diferenca_inicial - 1000 && soma <= diferenca_inicial + 1000)%verifica se a imgem atual e "igual" a incial
-        segundos = i/30;
+        segundos = i/fps_video_base;
         %loop para mostrar o roubo
         for h = i:n
             soma = 0;
@@ -86,7 +86,7 @@ for i=n:-2:1
             end
             imwrite(frame_Atual,['Image' int2str(h), '.jpg']);
             if(soma >= diferenca_final - 1000 && soma <= diferenca_final + 1000)%verifica se mostou o roubo 
-                msgbox(sprintf('Tempo do Roubo %2.3g segundos\n',segundos),'Notificação');
+                msgbox(sprintf('Tempo do Roubo %2.3g segundos\n',segundos),'NotificaÃ§Ã£o');
                 break;
             end
             h = h + taxa;
