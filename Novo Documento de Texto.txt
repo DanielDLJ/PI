@@ -1,0 +1,7 @@
+p=ginput(2)
+    p1max=max(p(:,1));p2max=max(p(:,2));p1min=min(p(:,1));p2min=min(p(:,2));
+    A(:,[1:p1min],:)=[];
+    A([1:p2min],:,:)=[];
+    A(:,[uint64(p1max-p1min+1):end],:)=[];
+    A([uint64(p2max-p2min+1):end],:,:)=[];
+    imshow(A)
