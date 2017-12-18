@@ -1,4 +1,5 @@
 A=imread('lena.bmp');
+imshow(A);
 p=ginput(2)
     p1max=max(p(:,1));p2max=max(p(:,2));p1min=min(p(:,1));p2min=min(p(:,2));
     A(:,[1:p1min],:)=[];
