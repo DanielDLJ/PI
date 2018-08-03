@@ -1,0 +1,49 @@
+close all
+clear all
+clc
+
+%Passo 0
+%Nome:Daniel Leme Junior
+%Ra:  725805
+%Nome:Igor Inacio
+%Ra:  725804
+%Matlab
+
+%Passo 1
+A = imread('pillsetc.png');
+figure, imshow(A),title('Passo 1 - Original');
+
+%Passo 2
+nivel = graythresh(A);
+imagemPasso2 = im2bw(A,nivel);
+figure, imshow(imagemPasso2),title('Passo 2 - Binarizada com graythresh');
+
+
+%Passo 3
+imagemPasso3 = bwareaopen(imagemPasso2,30);
+figure, imshow(imagemPasso3),title('Passo 3 - Com bwareaopen 30');
+
+%Passo 4
+se = strel('disk',2);
+imagemPasso4 = imclose(imagemPasso3,se);
+
+figure, imshow(imagemPasso4),title('Passo 4 - Com strel tipo disco tamanho 2 e imclose');
+
+%Passo 5
+
+imagemPasso5 = imfill(imagemPasso4,'holes');
+figure, imshow(imagemPasso5),title('Passo 5 - Holes preenchidos');
+
+%Passo 6
+
+CC = bwconncomp(imagemPasso5);
+L = labelmatrix(CC);
+imagemPasso6 = label2rgb(L,'jet',[0.5,0.5,0.5]);
+figure, imshow(imagemPasso6),title('Passo 6 - objetos coloridos com label2rgb');
+
+
+%Passo 7
+
+
+figure, imshow(imagemPasso6),title('Passo 7 - Borda branca nos objetos');
+
